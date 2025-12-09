@@ -1,4 +1,10 @@
-com/pantry/ims/ServletInitializer.class
-com/pantry/ims/dto/CustomerRequestDTO.class
-com/pantry/ims/PantryImsApplication.class
-com/pantry/ims/controller/CustomerController.class
+com\pantry\ims\dto\CustomerDeleteDTO.class
+com\pantry\ims\dto\CustomerResponseDTO.class
+com\pantry\ims\PantryImsApplication.class
+com\pantry\ims\dto\CustomerRequestDTO.class
+com\pantry\ims\ServletInitializer.class
+com\pantry\ims\dto\CustomerDeleteResponseDTO.class
+com\pantry\ims\dto\CustomerModifyDTO.class
+com\pantry\ims\entity\CustomerEntity.class
+com\pantry\ims\controller\CustomerController.class
+com\pantry\ims\repository\CustomerRepository.class
