@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PantryImsApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(PantryImsApplication.class, args);
 	}
 
