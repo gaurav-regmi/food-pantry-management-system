@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("customer")
+@RequestMapping("/customer")
 public class CustomerController {
 
     @Autowired
     private CustomerRepository customerRepository;
 
 
-    @PostMapping(value = "save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public String saveCustomer(@RequestBody CustomerRequestDTO customerRequestDTO) {
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setName(customerRequestDTO.getName());
@@ -30,7 +30,7 @@ public class CustomerController {
         return "Customer saved successfully";
     }
 
-    @GetMapping(value = "info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<CustomerResponseDTO>> customerInfo() {
         List<CustomerEntity> customerEntityList = customerRepository.findAll();
 
@@ -47,5 +47,38 @@ public class CustomerController {
 
         return ResponseEntity.ok(customerResponseDTOList);
     }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable Integer id) {
+
+        if (!customerRepository.existsById(id)) {
+            return ResponseEntity
+                    .status(404)
+                    .body("Customer with ID " + id + " not found");
+        }
+
+        customerRepository.deleteById(id);
+        return ResponseEntity.ok("Customer deleted successfully");
+    }
+    @PutMapping(value = "/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> updateCustomer(
+            @PathVariable Integer id,
+            @RequestBody CustomerRequestDTO customerRequestDTO) {
+
+        return customerRepository.findById(id)
+                .map(customerEntity -> {
+                    customerEntity.setName(customerRequestDTO.getName());
+                    customerEntity.setAddress(customerRequestDTO.getAddress());
+
+                    customerRepository.save(customerEntity);
+                    return ResponseEntity.ok("Customer updated successfully");
+                })
+                .orElseGet(() ->
+                        ResponseEntity
+                                .status(404)
+                                .body("Customer with ID " + id + " not found"));
+    }
+
 
 }
