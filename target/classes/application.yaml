@@ -4,7 +4,11 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/fpims
     username: root
+<<<<<<< HEAD
     password: Qwertyuiop@888
+=======
+    password: root
+>>>>>>> 13bb6c82c0da542e62a787645cf184f1b03a9632
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
