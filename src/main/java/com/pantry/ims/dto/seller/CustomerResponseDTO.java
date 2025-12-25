@@ -1,4 +1,4 @@
-package com.pantry.ims.dto;
+package com.pantry.ims.dto.seller;
 
 public class CustomerResponseDTO {
     public Integer getId() {

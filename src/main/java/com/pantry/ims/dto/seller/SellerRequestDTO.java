@@ -1,17 +1,8 @@
-package com.pantry.ims.dto;
+package com.pantry.ims.dto.seller;
 
-public class SellerResponseDTO {
-    private Integer id;
+public class SellerRequestDTO {
     private String name;
     private String address;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

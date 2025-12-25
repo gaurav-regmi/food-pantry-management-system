@@ -1,4 +1,4 @@
-package com.pantry.ims.dto;
+package com.pantry.ims.dto.seller;
 
 public class CustomerDeleteResponseDTO {
     private String message;

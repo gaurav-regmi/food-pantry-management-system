@@ -1,6 +1,6 @@
 package com.pantry.ims.controller;
 
-import com.pantry.ims.dto.*;
+import com.pantry.ims.dto.seller.*;
 import com.pantry.ims.entity.CustomerEntity;
 import com.pantry.ims.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
