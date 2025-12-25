@@ -1,4 +1,4 @@
-package com.pantry.ims.dto.seller;
+package com.pantry.ims.dto.customer;
 
 public class CustomerDeleteDTO {
     private Integer id;
