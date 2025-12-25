@@ -18,8 +18,6 @@ import java.util.List;
 public class SellerController {
 
     @Autowired
-    private SellerRepository sellerRepository;
-    @Autowired
     private SellerService sellerService;
 
     @PostMapping(value = "save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
