@@ -60,20 +60,27 @@ public class CustomerController {
                 //throw a not found message;
                 responseDTO.setMessage("Customer not found");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDTO);
+            } else {
+
+                CustomerEntity customerEntity = optionalCustomerEntity.get();
+
+                if (modifyDTO.getName() != null) {
+                    customerEntity.setName(modifyDTO.getName());
+                }
+
+                if (modifyDTO.getAddress() != null) {
+                    customerEntity.setAddress(modifyDTO.getAddress());
+                }
+
+                CustomerEntity updatedCustomer = customerRepository.save(customerEntity);
+
+
+                responseDTO.setName(updatedCustomer.getName());
+                responseDTO.setAddress(updatedCustomer.getAddress());
+                responseDTO.setMessage("Customer updated successfully");
+
+                return ResponseEntity.ok(responseDTO);
             }
-
-            CustomerEntity customerEntity = optionalCustomerEntity.get();
-            customerEntity.setName(modifyDTO.getName());
-            customerEntity.setAddress(modifyDTO.getAddress());
-
-            CustomerEntity updatedCustomer = customerRepository.save(customerEntity);
-
-
-            responseDTO.setName(updatedCustomer.getName());
-            responseDTO.setAddress(updatedCustomer.getAddress());
-            responseDTO.setMessage("Customer updated successfully");
-
-            return ResponseEntity.ok(responseDTO);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error");
         }
@@ -89,13 +96,14 @@ public class CustomerController {
             customerDeleteResponseDTO.setMessage("Customer not found");
             return customerDeleteResponseDTO;
 
-        }
-        CustomerEntity customer = optionalCustomerEntity.get();
-        customerRepository.delete(customer);
+        } else {
+            CustomerEntity customer = optionalCustomerEntity.get();
+            customerRepository.delete(customer);
 
-        CustomerDeleteResponseDTO customerDeleteResponseDTO = new CustomerDeleteResponseDTO();
-        customerDeleteResponseDTO.setMessage("Customer deleted successfully");
-        return customerDeleteResponseDTO;
+            CustomerDeleteResponseDTO customerDeleteResponseDTO = new CustomerDeleteResponseDTO();
+            customerDeleteResponseDTO.setMessage("Customer deleted successfully");
+            return customerDeleteResponseDTO;
+        }
 
     }
 
